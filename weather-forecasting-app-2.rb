@@ -13,7 +13,7 @@ end
 weather = get_weather_page(location)
 
 #use strftime method to get the current week day as an integer
-today = Time.now.strftime("%w").to_i+3
+today = Time.now.strftime("%w").to_i
 
 #create a loop with the each method to get every desired attribute from the forecasts method
 #find out what the current day is as an integer
