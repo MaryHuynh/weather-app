@@ -13,7 +13,7 @@ end
 weather = get_weather_page(location)
 
 #use strftime method to get the current week day as an integer
-today = Time.now.strftime("%w").to_i
+today = Time.now.strftime("%w").to_i+3
 
 #create a loop with the each method to get every desired attribute from the forecasts method
 #find out what the current day is as an integer
@@ -23,7 +23,9 @@ weather.forecasts.each do|forecast|
 	weekday = forecast["date"].strftime("%w").to_i
 	if (weekday == today)
 		dayName = "Today"
-	elsif (weekday == today + 1 || weekday == 0)
+	elsif (weekday == today + 1)
+		dayName = "Tomorrow"
+	elsif (weekday == 0 && today + 1 == 7)
 		dayName = "Tomorrow"
 	else
 		dayName = forecast["date"].strftime("%A")
