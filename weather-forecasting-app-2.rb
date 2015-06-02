@@ -9,6 +9,12 @@ def get_weather_page(location)
 	weather_page = client.lookup_by_location(location)
 end
 
+#function to convert temp from Celsius to Farenheit
+def temp_converter(temp)
+	temp = temp*1.8 + 32
+	return temp.to_i
+end
+
 #call get_weather_page function using the user zipcode and set the page info equal to the weather variable
 weather = get_weather_page(location)
 
@@ -31,11 +37,11 @@ weather.forecasts.each do|forecast|
 		dayName = forecast["date"].strftime("%A")
 	end
 	
-	low_temp = forecast["low"]*1.8 + 32
-	high_temp = forecast["high"]*1.8 + 32
+	low_temp = temp_converter(forecast["low"])
+	high_temp = temp_converter(forecast["high"])
 	
 	#Farenheit output
-	puts dayName + " is going to be " + forecast["text"].downcase + " with a low of #{low_temp.to_i}" + " and a high of #{high_temp.to_i}" + " degrees Farenheit."
+	puts dayName + " is going to be " + forecast["text"].downcase + " with a low of #{low_temp}" + " and a high of #{high_temp}" + " degrees Farenheit."
 	
 	#Celsius output
 	#puts dayName + " is going to be " + forecast["text"].downcase + " with a low of " + forecast["low"].to_s + " and a high of " + forecast["high"].to_s + " degrees Celsius."
