@@ -31,7 +31,14 @@ weather.forecasts.each do|forecast|
 		dayName = forecast["date"].strftime("%A")
 	end
 	
-	puts dayName + " is going to be " + forecast["text"].downcase + " with a low of " + forecast["low"].to_s + " and a high of " + forecast["high"].to_s + " degrees Celsius."
+	low_temp = forecast["low"]*1.8 + 32
+	high_temp = forecast["high"]*1.8 + 32
+	
+	#Farenheit output
+	puts dayName + " is going to be " + forecast["text"].downcase + " with a low of #{low_temp.to_i}" + " and a high of #{high_temp.to_i}" + " degrees Farenheit."
+	
+	#Celsius output
+	#puts dayName + " is going to be " + forecast["text"].downcase + " with a low of " + forecast["low"].to_s + " and a high of " + forecast["high"].to_s + " degrees Celsius."
 end
 
 
